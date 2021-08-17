@@ -1,0 +1,41 @@
+version: '3.3'
+services:
+  server1:
+    image: sshende1985/centos7:latest
+    restart: always
+    container_name: server1
+    hostname: server1
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    networks:
+      - ccn 
+
+  server2:
+    image: sshende1985/centos7:latest
+    container_name: server2
+    hostname: server2
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    networks:
+      - ccn 
+
+  ansible:
+    image: sshende1985/ansible:latest
+    container_name: ansible
+    hostname: ansible
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    networks:
+      - ccn 
+
+networks:
+  ccn:
